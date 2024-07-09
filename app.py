@@ -1,5 +1,12 @@
 import streamlit as st
 import moviepy.editor as mp
+from moviepy.Clip import Clip
+
+# MoviePyの進捗バーを無効化するためのダミー関数
+def dummy_tqdm_bar(*args, **kwargs):
+    pass
+
+Clip.logger = dummy_tqdm_bar  # MoviePyの進捗バーを無効化
 
 def main():
     st.title("動画と音声の操作アプリ")
