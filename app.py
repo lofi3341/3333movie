@@ -1,22 +1,5 @@
 import streamlit as st
 import moviepy.editor as mp
-import proglog.logger
-from moviepy.Clip import Clip
-
-# proglogのログ出力を無効化するクラスを作成
-class DummyProglog:
-    def __init__(self):
-        pass
-
-    def write(self, msg):
-        pass
-
-    def flush(self):
-        pass
-
-# moviepy と proglog のログ出力をダミーに差し替え
-Clip.logger = DummyProglog
-proglog.logger.logger = DummyProglog
 
 def main():
     st.title("動画と音声の操作アプリ")
