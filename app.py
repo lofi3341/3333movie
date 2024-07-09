@@ -1,10 +1,11 @@
 import streamlit as st
 import moviepy.editor as mp
+import proglog.logger
 from moviepy.Clip import Clip
 
-# 進捗バーを無効化するクラスを作成
-class DummyTqdmFile:
-    def __init__(self, fp=None):
+# proglogのログ出力を無効化するクラスを作成
+class DummyProglog:
+    def __init__(self):
         pass
 
     def write(self, msg):
@@ -13,8 +14,9 @@ class DummyTqdmFile:
     def flush(self):
         pass
 
-# moviepy の進捗バーをダミーに差し替え
-Clip.logger = DummyTqdmFile
+# moviepy と proglog のログ出力をダミーに差し替え
+Clip.logger = DummyProglog
+proglog.logger.logger = DummyProglog
 
 def main():
     st.title("動画と音声の操作アプリ")
